@@ -55,9 +55,9 @@
         ::-webkit-scrollbar-thumb { background: #2A2A2A; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #a4c639; }
 
-        /* Utilitário para transição de imagem suave */
+        /* Utilitário para transição de imagem suave - Ajustado para 1.5s para ser mais ágil */
         .slide-image {
-            transition: opacity 2s ease-in-out;
+            transition: opacity 1.5s ease-in-out;
         }
     </style>
 </head>
@@ -193,14 +193,6 @@
                             </div>
                         </a>
                     </div>
-
-                    <!-- Botão Catálogo (Secundário) -->
-                    <a href="#" class="group block transform transition-all hover:scale-[1.01] opacity-90 hover:opacity-100 mt-2">
-                        <div class="bg-transparent border border-brand-green/30 hover:border-brand-green hover:bg-brand-green/5 rounded-xl p-4 flex items-center justify-center gap-3 text-brand-green hover:text-white transition-colors">
-                            <i class="fa-solid fa-book-open"></i>
-                            <span class="font-semibold">Ver Catálogo 2026</span>
-                        </div>
-                    </a>
 
                 </div>
 
@@ -362,8 +354,8 @@
             slides[currentSlide].classList.add('opacity-60');
         }
 
-        // Troca de imagem a cada 5 segundos
-        setInterval(nextSlide, 5000);
+        // Troca de imagem a cada 3 segundos (Ajustado de 5000 para 3000)
+        setInterval(nextSlide, 3000);
 
 
         // 2. Lógica das Abas (Toggle Switch)
