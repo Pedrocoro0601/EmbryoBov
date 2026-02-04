@@ -67,6 +67,18 @@
         .slide-image {
             transition: opacity 2s ease-in-out;
         }
+
+        /* Animação explícita para controle via JS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <!-- h-[100dvh] garante que a altura se adapte às barras do navegador no mobile -->
@@ -171,7 +183,7 @@
             </div>
 
             <!-- ABA: SERVIÇOS -->
-            <div id="shop-content" class="hidden flex-col gap-2.5 animate-fade-in w-full max-w-[320px] mx-auto mt-4">
+            <div id="shop-content" class="hidden flex-col gap-2.5 w-full max-w-[320px] mx-auto mt-4">
                 
                 <a href="https://wa.me/5546984194726?text=Interesse em Aspiração Folicular" class="block w-full active:scale-[0.98] transition-all">
                     <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center">
@@ -314,11 +326,12 @@
                 bioText.classList.remove('opacity-0', 'max-h-0');
                 bioText.classList.add('opacity-100', 'max-h-20');
 
+                // Animação simples para a aba de contato
                 contentLinks.style.animation = 'none';
                 contentLinks.offsetHeight; 
-                contentLinks.style.animation = null; 
+                contentLinks.style.animation = 'fadeInUp 0.5s ease-out forwards';
             } else {
-                // Aba Serviços (Com Animação de Encolhimento)
+                // Aba Serviços (Com Animação de Encolhimento e Cascata)
                 btnShop.classList.add(...activeClasses);
                 btnShop.classList.remove(...inactiveClasses);
                 btnLinks.classList.remove(...activeClasses);
@@ -337,9 +350,15 @@
                 bioText.classList.remove('opacity-100', 'max-h-20');
                 bioText.classList.add('opacity-0', 'max-h-0');
 
-                contentShop.style.animation = 'none';
-                contentShop.offsetHeight; 
-                contentShop.style.animation = null;
+                // Animação em Cascata (Stagger) para os itens de serviço
+                const serviceItems = contentShop.querySelectorAll('a');
+                serviceItems.forEach((item, index) => {
+                    item.style.opacity = '0'; // Garante que comece invisível
+                    item.style.animation = 'none';
+                    item.offsetHeight; // Trigger reflow
+                    // Delay progressivo: 0.1s, 0.15s, 0.2s...
+                    item.style.animation = `fadeInUp 0.5s ease-out forwards ${index * 0.05}s`;
+                });
             }
         }
     </script>
