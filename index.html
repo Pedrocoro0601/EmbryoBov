@@ -7,7 +7,6 @@
     <title>EmbryoBov - Biotecnologia e Genética</title>
     
     <!-- ESPAÇO PARA O LOGO NA BARRA DE NAVEGAÇÃO (FAVICON) -->
-    <!-- Coloque o caminho da sua imagem aqui (ex: favicon.png ou logo.png) -->
     <link rel="icon" type="image/png" href="logo.png">
 
     <!-- Fonte Inter -->
@@ -76,8 +75,8 @@
     <!-- App Container -->
     <main class="w-full h-full max-w-md bg-brand-dark relative flex flex-col shadow-2xl md:border-x md:border-white/5">
 
-        <!-- HEADER -->
-        <header class="relative w-full h-64 xs:h-72 shrink-0 flex flex-col items-center justify-end pb-6 overflow-hidden">
+        <!-- HEADER com ID e transição adicionados -->
+        <header id="main-header" class="relative w-full h-64 xs:h-72 shrink-0 flex flex-col items-center justify-end pb-6 overflow-hidden transition-all duration-500 ease-in-out">
             
             <!-- Slideshow Background -->
             <div class="absolute inset-0 z-0">
@@ -102,15 +101,18 @@
                          class="w-full h-full object-contain">
                 </div>
 
-                <p class="text-gray-300 text-xs font-light max-w-xs leading-relaxed drop-shadow-sm">
-                    Soluções avançadas em reprodução bovina.<br>
-                    Excelência genética para seu rebanho.
-                </p>
+                <!-- Bio com ID e classes de transição -->
+                <div id="bio-text" class="transition-all duration-500 ease-in-out max-h-20 opacity-100 overflow-hidden">
+                    <p class="text-gray-300 text-xs font-light max-w-xs leading-relaxed drop-shadow-sm">
+                        Soluções avançadas em reprodução bovina.<br>
+                        Excelência genética para seu rebanho.
+                    </p>
+                </div>
             </div>
         </header>
 
         <!-- NAVEGAÇÃO (Abas) -->
-        <div class="w-full px-8 py-2 mt-2 shrink-0 z-20">
+        <div class="w-full px-8 py-2 mt-2 shrink-0 z-20 transition-all duration-500">
             <div class="bg-white/5 backdrop-blur-md p-1 rounded-full flex relative border border-white/5 mx-auto max-w-[280px]">
                 <button id="btn-links" class="flex-1 py-2 text-xs font-bold rounded-full transition-all duration-300 ease-out bg-brand-green text-brand-dark shadow-sm" onclick="switchTab('links')">
                     Contato
@@ -284,11 +286,16 @@
             const btnShop = document.getElementById('btn-shop');
             const contentLinks = document.getElementById('links-content');
             const contentShop = document.getElementById('shop-content');
+            
+            // Novos elementos para animação
+            const mainHeader = document.getElementById('main-header');
+            const bioText = document.getElementById('bio-text');
 
             const activeClasses = ['bg-brand-green', 'text-brand-dark', 'shadow-sm'];
             const inactiveClasses = ['text-gray-400', 'hover:text-white', 'bg-transparent', 'shadow-none'];
 
             if (tabName === 'links') {
+                // Aba Contato (Estado Original)
                 btnLinks.classList.add(...activeClasses);
                 btnLinks.classList.remove(...inactiveClasses);
                 btnShop.classList.remove(...activeClasses);
@@ -298,11 +305,20 @@
                 contentLinks.classList.add('flex');
                 contentShop.classList.add('hidden');
                 contentShop.classList.remove('flex');
+                
+                // Restaura o Header
+                mainHeader.classList.add('h-64', 'xs:h-72');
+                mainHeader.classList.remove('h-48');
+                
+                // Restaura a Bio
+                bioText.classList.remove('opacity-0', 'max-h-0');
+                bioText.classList.add('opacity-100', 'max-h-20');
 
                 contentLinks.style.animation = 'none';
                 contentLinks.offsetHeight; 
                 contentLinks.style.animation = null; 
             } else {
+                // Aba Serviços (Com Animação de Encolhimento)
                 btnShop.classList.add(...activeClasses);
                 btnShop.classList.remove(...inactiveClasses);
                 btnLinks.classList.remove(...activeClasses);
@@ -312,6 +328,14 @@
                 contentShop.classList.add('flex');
                 contentLinks.classList.add('hidden');
                 contentLinks.classList.remove('flex');
+                
+                // Encolhe o Header
+                mainHeader.classList.remove('h-64', 'xs:h-72');
+                mainHeader.classList.add('h-48');
+                
+                // Esconde a Bio
+                bioText.classList.remove('opacity-100', 'max-h-20');
+                bioText.classList.add('opacity-0', 'max-h-0');
 
                 contentShop.style.animation = 'none';
                 contentShop.offsetHeight; 
