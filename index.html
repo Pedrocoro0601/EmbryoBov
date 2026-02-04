@@ -79,6 +79,37 @@
                 transform: translateY(0) scale(1);
             }
         }
+
+        /* Animações de navegação interna (Lista <-> Detalhes) */
+        .slide-out-left {
+            animation: slideOutLeft 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        .slide-in-right {
+            animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        .slide-out-right {
+            animation: slideOutRight 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        .slide-in-left {
+            animation: slideInLeft 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes slideOutLeft {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(-20%); opacity: 0; }
+        }
+        @keyframes slideInRight {
+            from { transform: translateX(20%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(20%); opacity: 0; }
+        }
+        @keyframes slideInLeft {
+            from { transform: translateX(-20%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
     </style>
 </head>
 <!-- h-[100dvh] garante que a altura se adapte às barras do navegador no mobile -->
@@ -125,7 +156,6 @@
         </header>
 
         <!-- NAVEGAÇÃO (Abas) -->
-        <!-- Adicionado ID e classes de transição para ajustar margem/padding -->
         <div id="nav-container" class="w-full px-8 py-2 mt-2 shrink-0 z-20 transition-all duration-500 relative">
             <div class="bg-white/5 backdrop-blur-md p-1 rounded-full flex relative border border-white/5 mx-auto max-w-[280px] shadow-lg">
                 <button id="btn-links" class="flex-1 py-2 text-xs font-bold rounded-full transition-all duration-300 ease-out bg-brand-green text-brand-dark shadow-sm" onclick="switchTab('links')">
@@ -160,80 +190,113 @@
                 </a>
             </div>
 
-            <!-- ABA: SERVIÇOS -->
-            <div id="shop-content" class="hidden flex-col gap-2.5 w-full max-w-[320px] mx-auto mt-2 pb-10">
+            <!-- ABA: SERVIÇOS (CONTAINER PRINCIPAL) -->
+            <!-- Agora contém duas seções internas: LISTA e DETALHES -->
+            <div id="shop-content" class="hidden w-full max-w-[320px] mx-auto mt-2 pb-10 relative h-full">
                 
-                <a href="https://wa.me/5546984194726?text=Interesse em Aspiração Folicular" class="block w-full active:scale-[0.98] transition-all">
-                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center shadow-sm hover:shadow-brand-green/10 transition-shadow">
+                <!-- 1. LISTA DE SERVIÇOS -->
+                <div id="services-list" class="flex flex-col gap-2.5 w-full absolute top-0 left-0 transition-transform duration-500">
+                    
+                    <div onclick="openServiceDetails('aspiracao')" class="cursor-pointer bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center shadow-sm hover:shadow-brand-green/10 transition-all active:scale-[0.98]">
                         <div class="flex items-center gap-3">
                             <i class="fa-solid fa-vial-circle-check text-brand-green text-base"></i>
                             <span class="font-semibold text-gray-200 text-xs sm:text-sm group-hover:text-white transition-colors">Aspiração Folicular</span>
                         </div>
                     </div>
-                </a>
 
-                <a href="https://wa.me/5546984194726?text=Interesse em TE" class="block w-full active:scale-[0.98] transition-all">
-                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center shadow-sm hover:shadow-brand-green/10 transition-shadow">
+                    <div onclick="openServiceDetails('te')" class="cursor-pointer bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center shadow-sm hover:shadow-brand-green/10 transition-all active:scale-[0.98]">
                         <div class="flex items-center gap-3">
                             <i class="fa-solid fa-dna text-brand-green text-base"></i>
                             <span class="font-semibold text-gray-200 text-xs sm:text-sm group-hover:text-white transition-colors">Transferência de Embriões</span>
                         </div>
                     </div>
-                </a>
 
-                <a href="https://wa.me/5546984194726?text=Interesse em IATF" class="block w-full active:scale-[0.98] transition-all">
-                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center shadow-sm hover:shadow-brand-green/10 transition-shadow">
+                    <div onclick="openServiceDetails('iatf')" class="cursor-pointer bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center shadow-sm hover:shadow-brand-green/10 transition-all active:scale-[0.98]">
                         <div class="flex items-center gap-3">
                             <i class="fa-regular fa-clock text-brand-green text-base"></i>
                             <span class="font-semibold text-gray-200 text-xs sm:text-sm group-hover:text-white transition-colors">IATF</span>
                         </div>
                     </div>
-                </a>
 
-                <a href="https://wa.me/5546984194726?text=Interesse em Diagnóstico" class="block w-full active:scale-[0.98] transition-all">
-                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center shadow-sm hover:shadow-brand-green/10 transition-shadow">
+                    <div onclick="openServiceDetails('diagnostico')" class="cursor-pointer bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center shadow-sm hover:shadow-brand-green/10 transition-all active:scale-[0.98]">
                         <div class="flex items-center gap-3">
                             <i class="fa-solid fa-laptop-medical text-brand-green text-base"></i>
                             <span class="font-semibold text-gray-200 text-xs sm:text-sm group-hover:text-white transition-colors">Diagnóstico de Gestação</span>
                         </div>
                     </div>
-                </a>
 
-                <a href="https://wa.me/5546984194726?text=Interesse em Sexagem" class="block w-full active:scale-[0.98] transition-all">
-                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center shadow-sm hover:shadow-brand-green/10 transition-shadow">
+                    <div onclick="openServiceDetails('sexagem')" class="cursor-pointer bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center shadow-sm hover:shadow-brand-green/10 transition-all active:scale-[0.98]">
                         <div class="flex items-center gap-3">
                             <i class="fa-solid fa-venus-mars text-brand-green text-base"></i>
                             <span class="font-semibold text-gray-200 text-xs sm:text-sm group-hover:text-white transition-colors">Sexagem Fetal</span>
                         </div>
                     </div>
-                </a>
 
-                <a href="https://wa.me/5546984194726?text=Interesse em Exames" class="block w-full active:scale-[0.98] transition-all">
-                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center shadow-sm hover:shadow-brand-green/10 transition-shadow">
+                    <div onclick="openServiceDetails('exames')" class="cursor-pointer bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center shadow-sm hover:shadow-brand-green/10 transition-all active:scale-[0.98]">
                         <div class="flex items-center gap-3">
                             <i class="fa-solid fa-microscope text-brand-green text-base"></i>
                             <span class="font-semibold text-gray-200 text-xs sm:text-sm group-hover:text-white transition-colors">Exames Andrológicos</span>
                         </div>
                     </div>
-                </a>
 
-                <a href="https://wa.me/5546984194726?text=Interesse em Congelamento" class="block w-full active:scale-[0.98] transition-all">
-                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center shadow-sm hover:shadow-brand-green/10 transition-shadow">
+                    <div onclick="openServiceDetails('congelamento')" class="cursor-pointer bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center shadow-sm hover:shadow-brand-green/10 transition-all active:scale-[0.98]">
                         <div class="flex items-center gap-3">
                             <i class="fa-regular fa-snowflake text-brand-green text-base"></i>
                             <span class="font-semibold text-gray-200 text-xs sm:text-sm group-hover:text-white transition-colors">Congelamento de Sêmen</span>
                         </div>
                     </div>
-                </a>
 
-                <a href="https://wa.me/5546984194726?text=Interesse em Acompanhamento" class="block w-full active:scale-[0.98] transition-all">
-                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center shadow-sm hover:shadow-brand-green/10 transition-shadow">
+                    <div onclick="openServiceDetails('acompanhamento')" class="cursor-pointer bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center shadow-sm hover:shadow-brand-green/10 transition-all active:scale-[0.98]">
                         <div class="flex items-center gap-3">
                             <i class="fa-solid fa-clipboard-check text-brand-green text-base"></i>
                             <span class="font-semibold text-gray-200 text-xs sm:text-sm group-hover:text-white transition-colors">Acompanhamento Reprodutivo</span>
                         </div>
                     </div>
-                </a>
+                </div>
+
+                <!-- 2. DETALHES DO SERVIÇO (Inicialmente oculto) -->
+                <div id="service-details" class="hidden flex-col w-full h-full absolute top-0 left-0 bg-brand-dark z-10">
+                    
+                    <!-- Header Detalhes -->
+                    <div class="flex items-center gap-3 mb-4 pb-2 border-b border-white/5">
+                        <button onclick="closeServiceDetails()" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-brand-green active:scale-90 transition-transform">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <span class="font-bold text-sm text-gray-200">Voltar para serviços</span>
+                    </div>
+
+                    <!-- Conteúdo Dinâmico -->
+                    <div class="flex flex-col gap-4 flex-1">
+                        <!-- Imagem -->
+                        <div class="w-full h-48 rounded-2xl overflow-hidden shadow-lg border border-white/5 relative bg-gray-800">
+                             <img id="detail-img" src="" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                             <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent"></div>
+                             <!-- Ícone flutuante -->
+                             <div class="absolute bottom-3 left-3 bg-brand-green/20 backdrop-blur-md p-2 rounded-lg text-brand-green border border-brand-green/30">
+                                <i id="detail-icon" class="fa-solid fa-star"></i>
+                             </div>
+                        </div>
+
+                        <!-- Texto -->
+                        <div class="space-y-2 px-1">
+                            <h2 id="detail-title" class="text-xl font-bold text-white leading-tight">Título do Serviço</h2>
+                            <p id="detail-desc" class="text-sm text-gray-400 font-light leading-relaxed">
+                                Descrição do serviço aparece aqui.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Botão de Ação -->
+                    <div class="mt-auto pt-6">
+                        <a id="detail-whatsapp" href="#" target="_blank" class="block w-full active:scale-[0.98] transition-all">
+                            <div class="bg-brand-green hover:bg-[#8eb333] text-brand-dark rounded-xl p-3.5 flex items-center justify-center gap-2 font-bold shadow-lg shadow-brand-green/20">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
+                                <span>Tenho Interesse</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -255,6 +318,59 @@
 
     <!-- Scripts de Funcionalidade -->
     <script>
+        // --- DADOS DOS SERVIÇOS ---
+        const servicesData = {
+            aspiracao: {
+                title: "Aspiração Folicular (OPU)",
+                desc: "Técnica avançada onde os oócitos são coletados diretamente dos ovários da doadora guiados por ultrassom. Ideal para maximizar descendentes de fêmeas geneticamente superiores em curto espaço de tempo.",
+                img: "img1.jpg",
+                icon: "fa-vial-circle-check"
+            },
+            te: {
+                title: "Transferência de Embriões",
+                desc: "Acelerador genético que permite a uma fêmea produzir dezenas de bezerros por ano através de barrigas de aluguel (receptoras), multiplicando a genética de ponta do seu rebanho.",
+                img: "img2.jpg",
+                icon: "fa-dna"
+            },
+            iatf: {
+                title: "IATF",
+                desc: "Inseminação Artificial em Tempo Fixo. Sincroniza a ovulação das fêmeas, eliminando a necessidade de observação de cio e permitindo inseminar um grande lote de animais no mesmo dia.",
+                img: "img3.jpg",
+                icon: "fa-clock"
+            },
+            diagnostico: {
+                title: "Diagnóstico de Gestação",
+                desc: "Uso de ultrassonografia precoce (a partir de 30 dias) para identificar fêmeas prenhas e vazias, permitindo rápida ressincronização e diminuindo o intervalo entre partos.",
+                img: "img4.jpg",
+                icon: "fa-laptop-medical"
+            },
+            sexagem: {
+                title: "Sexagem Fetal",
+                desc: "Determinação do sexo do feto por volta dos 60 dias de gestação via ultrassom. Ferramenta estratégica para o planejamento comercial e de reposição do plantel.",
+                img: "img5.jpg",
+                icon: "fa-venus-mars"
+            },
+            exames: {
+                title: "Exames Andrológicos",
+                desc: "Avaliação completa da saúde reprodutiva dos touros, incluindo exame físico e análise de sêmen, garantindo que apenas reprodutores férteis sejam utilizados na estação de monta.",
+                img: "img7.jpg",
+                icon: "fa-microscope"
+            },
+            congelamento: {
+                title: "Congelamento de Sêmen",
+                desc: "Preservação do material genético de touros de alto valor zootécnico por tempo indeterminado, garantindo segurança genética e possibilidade de comercialização.",
+                img: "img8.jpg",
+                icon: "fa-snowflake"
+            },
+            acompanhamento: {
+                title: "Acompanhamento Reprodutivo",
+                desc: "Consultoria contínua com análise de índices zootécnicos, planejamento de estações de monta e estratégias nutricionais para otimizar a eficiência reprodutiva da fazenda.",
+                img: "img1.jpg",
+                icon: "fa-clipboard-check"
+            }
+        };
+
+        // --- LÓGICA DO SLIDESHOW ---
         const slides = document.querySelectorAll('.slide-image');
         let currentSlide = 0;
         const totalSlides = slides.length;
@@ -266,16 +382,16 @@
             slides[currentSlide].classList.remove('opacity-0');
             slides[currentSlide].classList.add('opacity-50');
         }
-
         setInterval(nextSlide, 3000);
 
+        // --- LÓGICA DE ABAS (CONTATO / SERVIÇOS) ---
         function switchTab(tabName) {
             const btnLinks = document.getElementById('btn-links');
             const btnShop = document.getElementById('btn-shop');
             const contentLinks = document.getElementById('links-content');
             const contentShop = document.getElementById('shop-content');
             
-            // Elementos para animação
+            // Elementos para animação global
             const mainHeader = document.getElementById('main-header');
             const bioText = document.getElementById('bio-text');
             const logoContainer = document.getElementById('logo-container');
@@ -285,8 +401,13 @@
             const activeClasses = ['bg-brand-green', 'text-brand-dark', 'shadow-sm'];
             const inactiveClasses = ['text-gray-400', 'hover:text-white', 'bg-transparent', 'shadow-none'];
 
+            // Se trocar de aba, certifique-se de que os detalhes estão fechados
+            if(document.getElementById('service-details').classList.contains('flex')) {
+                closeServiceDetailsImmediate();
+            }
+
             if (tabName === 'links') {
-                // --- MODO CONTATO (ESTADO PADRÃO) ---
+                // --- MODO CONTATO ---
                 btnLinks.classList.add(...activeClasses);
                 btnLinks.classList.remove(...inactiveClasses);
                 btnShop.classList.remove(...activeClasses);
@@ -297,69 +418,107 @@
                 contentShop.classList.add('hidden');
                 contentShop.classList.remove('flex');
                 
-                // Restaura o Header
                 mainHeader.classList.add('h-64', 'xs:h-72', 'pb-6');
                 mainHeader.classList.remove('h-0', 'pb-0');
-                
-                // Mostra Imagens
                 bgSlideshow.classList.remove('opacity-0');
-                
-                // Restaura o Logo
                 logoContainer.classList.remove('h-0', 'w-0', 'opacity-0', 'scale-0', 'mb-0');
                 logoContainer.classList.add('h-28', 'w-52', 'opacity-100', 'scale-100', 'mb-3');
-
-                // Restaura a Bio
                 bioText.classList.remove('opacity-0', 'max-h-0');
                 bioText.classList.add('opacity-100', 'max-h-20');
-                
-                // Ajusta Nav
                 navContainer.classList.remove('pt-6');
                 navContainer.classList.add('mt-2');
 
-                // Animação simples para a aba de contato
                 contentLinks.style.animation = 'none';
                 contentLinks.offsetHeight; 
                 contentLinks.style.animation = 'fadeInUp 0.5s ease-out forwards';
             } else {
-                // --- MODO SERVIÇOS (TELA CHEIA) ---
+                // --- MODO SERVIÇOS ---
                 btnShop.classList.add(...activeClasses);
                 btnShop.classList.remove(...inactiveClasses);
                 btnLinks.classList.remove(...activeClasses);
                 btnLinks.classList.add(...inactiveClasses);
 
                 contentShop.classList.remove('hidden');
-                contentShop.classList.add('flex');
+                contentShop.classList.add('block'); // Mudado para block pois usamos posicionamento absoluto dentro
                 contentLinks.classList.add('hidden');
                 contentLinks.classList.remove('flex');
                 
-                // Encolhe o Header COMPLETAMENTE
                 mainHeader.classList.remove('h-64', 'xs:h-72', 'pb-6');
                 mainHeader.classList.add('h-0', 'pb-0');
-                
-                // Esconde as imagens
                 bgSlideshow.classList.add('opacity-0');
-                
-                // Esconde o Logo completamente
                 logoContainer.classList.remove('h-28', 'w-52', 'opacity-100', 'scale-100', 'mb-3');
                 logoContainer.classList.add('h-0', 'w-0', 'opacity-0', 'scale-0', 'mb-0');
-
-                // Esconde a Bio
                 bioText.classList.remove('opacity-100', 'max-h-20');
                 bioText.classList.add('opacity-0', 'max-h-0');
-                
-                // Ajusta Nav para não colar no topo absoluto
                 navContainer.classList.remove('mt-2');
-                navContainer.classList.add('pt-6'); // Espaço extra no topo
+                navContainer.classList.add('pt-6');
 
-                // Animação em Cascata (Stagger) para os itens de serviço
-                const serviceItems = contentShop.querySelectorAll('a');
-                serviceItems.forEach((item, index) => {
+                // Anima lista
+                const list = document.getElementById('services-list');
+                const items = list.querySelectorAll('div[onclick]');
+                items.forEach((item, index) => {
                     item.style.opacity = '0'; 
-                    item.style.animation = 'none';
-                    item.offsetHeight; 
                     item.style.animation = `fadeInUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards ${index * 0.05}s`;
                 });
             }
+        }
+
+        // --- LÓGICA DE DETALHES DO SERVIÇO ---
+
+        function openServiceDetails(serviceKey) {
+            const list = document.getElementById('services-list');
+            const details = document.getElementById('service-details');
+            const data = servicesData[serviceKey];
+
+            if (!data) return;
+
+            // Popular dados
+            document.getElementById('detail-title').innerText = data.title;
+            document.getElementById('detail-desc').innerText = data.desc;
+            document.getElementById('detail-img').src = data.img;
+            document.getElementById('detail-icon').className = `fa-solid ${data.icon}`;
+            document.getElementById('detail-whatsapp').href = `https://wa.me/5546984194726?text=Olá, tenho interesse em ${data.title}`;
+
+            // Animação: Lista sai para a esquerda, Detalhes entram da direita
+            list.classList.remove('slide-in-left');
+            list.classList.add('slide-out-left');
+
+            details.classList.remove('hidden');
+            details.classList.add('flex');
+            details.classList.remove('slide-out-right');
+            details.classList.add('slide-in-right');
+        }
+
+        function closeServiceDetails() {
+            const list = document.getElementById('services-list');
+            const details = document.getElementById('service-details');
+
+            // Animação: Detalhes saem para a direita, Lista entra da esquerda
+            details.classList.remove('slide-in-right');
+            details.classList.add('slide-out-right');
+
+            list.classList.remove('slide-out-left');
+            list.classList.add('slide-in-left');
+
+            // Espera a animação terminar para esconder o container de detalhes
+            setTimeout(() => {
+                details.classList.add('hidden');
+                details.classList.remove('flex');
+            }, 400); // 400ms = duração da animação CSS
+        }
+
+        // Função utilitária para resetar sem animação (ex: ao trocar de aba)
+        function closeServiceDetailsImmediate() {
+            const list = document.getElementById('services-list');
+            const details = document.getElementById('service-details');
+            
+            details.classList.add('hidden');
+            details.classList.remove('flex');
+            details.classList.remove('slide-in-right', 'slide-out-right');
+            
+            list.classList.remove('slide-out-left', 'slide-in-left');
+            list.style.transform = 'translateX(0)';
+            list.style.opacity = '1';
         }
     </script>
 </body>
