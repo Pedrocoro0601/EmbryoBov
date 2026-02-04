@@ -2,9 +2,14 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Ajuste para garantir que o rodapé apareça corretamente em mobiles com barras de navegação dinâmicas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>EmbryoBov - Biotecnologia e Genética</title>
     
+    <!-- ESPAÇO PARA O LOGO NA BARRA DE NAVEGAÇÃO (FAVICON) -->
+    <!-- Coloque o caminho da sua imagem aqui (ex: favicon.png ou logo.png) -->
+    <link rel="icon" type="image/png" href="logo.png">
+
     <!-- Fonte Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +45,7 @@
                         }
                     },
                     screens: {
-                        'xs': '375px', // Ajuste fino para celulares pequenos
+                        'xs': '375px',
                     }
                 }
             }
@@ -54,27 +59,26 @@
             -webkit-font-smoothing: antialiased;
         }
         
-        /* Scrollbar invisível ou muito discreta para o conteúdo interno */
+        /* Scrollbar invisível ou muito discreta */
         .custom-scroll::-webkit-scrollbar { width: 3px; }
         .custom-scroll::-webkit-scrollbar-track { background: transparent; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #2A2A2A; border-radius: 10px; }
 
-        /* Transição suave do slideshow */
         .slide-image {
             transition: opacity 2s ease-in-out;
         }
     </style>
 </head>
-<!-- h-screen e overflow-hidden para travar a tela -->
-<body class="bg-brand-dark text-gray-200 h-screen w-screen overflow-hidden flex flex-col items-center justify-center">
+<!-- h-[100dvh] garante que a altura se adapte às barras do navegador no mobile -->
+<body class="bg-brand-dark text-gray-200 h-[100dvh] w-screen overflow-hidden flex flex-col items-center justify-center">
 
-    <!-- App Container (Limite de largura para parecer app no Desktop) -->
+    <!-- App Container -->
     <main class="w-full h-full max-w-md bg-brand-dark relative flex flex-col shadow-2xl md:border-x md:border-white/5">
 
-        <!-- HEADER (Altura Aumentada para Centralizar Visualmente) -->
+        <!-- HEADER -->
         <header class="relative w-full h-64 xs:h-72 shrink-0 flex flex-col items-center justify-end pb-6 overflow-hidden">
             
-            <!-- Slideshow Background (8 Imagens) -->
+            <!-- Slideshow Background -->
             <div class="absolute inset-0 z-0">
                 <img src="img1.jpg" class="slide-image absolute inset-0 w-full h-full object-cover opacity-50" data-index="0">
                 <img src="img2.jpg" class="slide-image absolute inset-0 w-full h-full object-cover opacity-0" data-index="1">
@@ -85,21 +89,18 @@
                 <img src="img8.jpg" class="slide-image absolute inset-0 w-full h-full object-cover opacity-0" data-index="6">
                 <img src="img1.jpg" class="slide-image absolute inset-0 w-full h-full object-cover opacity-0" data-index="7">
                 
-                <!-- Gradiente para legibilidade -->
                 <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/40 to-transparent"></div>
             </div>
 
             <!-- Área do Logo e Bio -->
             <div class="relative z-10 w-full px-6 flex flex-col items-center text-center animate-fade-in">
                 
-                <!-- ESPAÇO PARA O LOGO (Sem efeitos) -->
                 <div class="mb-3 w-52 h-28 flex items-center justify-center">
                     <img src="logo.png" 
                          alt="Logo EmbryoBov" 
                          class="w-full h-full object-contain">
                 </div>
 
-                <!-- Bio Curta -->
                 <p class="text-gray-300 text-xs font-light max-w-xs leading-relaxed drop-shadow-sm">
                     Soluções avançadas em reprodução bovina.<br>
                     Excelência genética para seu rebanho.
@@ -119,65 +120,56 @@
             </div>
         </div>
 
-        <!-- ÁREA DE CONTEÚDO (Com rolagem interna) -->
+        <!-- ÁREA DE CONTEÚDO -->
         <div class="flex-1 w-full overflow-y-auto custom-scroll relative z-10 px-6 pb-6">
             
             <!-- ABA: CONTATO -->
-            <div id="links-content" class="flex flex-col gap-3 animate-fade-in w-full max-w-[320px] mx-auto mt-4">
+            <div id="links-content" class="flex flex-col gap-4 animate-fade-in w-full max-w-[320px] mx-auto mt-6">
                 
-                <!-- Botão WhatsApp -->
+                <!-- Botão WhatsApp (Principal) -->
                 <a href="https://wa.me/5546984194726" target="_blank" class="block w-full active:scale-95 transition-transform duration-200">
-                    <div class="bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-xl p-3 flex items-center justify-between shadow-lg shadow-green-900/10 border border-transparent">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 bg-black/10 rounded-lg flex items-center justify-center text-lg">
+                    <div class="bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-xl p-4 flex items-center justify-between shadow-lg shadow-green-900/20 border border-transparent">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-black/10 rounded-lg flex items-center justify-center text-xl">
                                 <i class="fa-brands fa-whatsapp"></i>
                             </div>
                             <div class="text-left">
-                                <span class="font-bold text-sm block leading-none">WhatsApp</span>
-                                <span class="text-[10px] text-green-50 opacity-90">Fale conosco</span>
+                                <span class="font-bold text-base block leading-none mb-1">WhatsApp</span>
+                                <span class="text-xs text-green-50 opacity-90">Iniciar conversa</span>
                             </div>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-xs opacity-50"></i>
+                        <i class="fa-solid fa-chevron-right text-sm opacity-60"></i>
                     </div>
                 </a>
 
-                <!-- Email -->
-                <a href="mailto:contato@embryobov.com" class="block w-full active:scale-95 transition-transform duration-200">
-                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 rounded-xl p-3 flex items-center justify-between shadow-md">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 bg-brand-green/10 rounded-lg flex items-center justify-center text-brand-green text-sm">
-                                <i class="fa-regular fa-envelope"></i>
+                <!-- Ícones de Acesso Rápido (Email e Localização) -->
+                <div class="grid grid-cols-2 gap-3">
+                    <!-- Email Icon Box -->
+                    <a href="mailto:nrgalon@embryobov.com.br" class="group active:scale-95 transition-all duration-200">
+                        <div class="bg-brand-card hover:bg-brand-gray border border-white/5 rounded-xl p-3 flex flex-col items-center justify-center gap-2 text-center h-24 shadow-md">
+                            <div class="w-8 h-8 rounded-full bg-brand-green/10 text-brand-green flex items-center justify-center group-hover:bg-brand-green group-hover:text-brand-dark transition-colors">
+                                <i class="fa-regular fa-envelope text-sm"></i>
                             </div>
-                            <div class="text-left">
-                                <span class="font-bold text-gray-200 text-sm block leading-none">Email</span>
-                                <span class="text-[10px] text-gray-500">Envie uma mensagem</span>
-                            </div>
+                            <span class="text-xs font-medium text-gray-300 group-hover:text-white">Enviar Email</span>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-xs text-gray-600"></i>
-                    </div>
-                </a>
+                    </a>
 
-                <!-- Localização -->
-                <a href="https://maps.google.com/?q=EmbryoBov" target="_blank" class="block w-full active:scale-95 transition-transform duration-200">
-                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 rounded-xl p-3 flex items-center justify-between shadow-md">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 bg-brand-green/10 rounded-lg flex items-center justify-center text-brand-green text-sm">
-                                <i class="fa-solid fa-map-location-dot"></i>
+                    <!-- Location Icon Box -->
+                    <a href="https://maps.google.com/?q=EmbryoBov" target="_blank" class="group active:scale-95 transition-all duration-200">
+                        <div class="bg-brand-card hover:bg-brand-gray border border-white/5 rounded-xl p-3 flex flex-col items-center justify-center gap-2 text-center h-24 shadow-md">
+                            <div class="w-8 h-8 rounded-full bg-brand-green/10 text-brand-green flex items-center justify-center group-hover:bg-brand-green group-hover:text-brand-dark transition-colors">
+                                <i class="fa-solid fa-map-location-dot text-sm"></i>
                             </div>
-                            <div class="text-left">
-                                <span class="font-bold text-gray-200 text-sm block leading-none">Localização</span>
-                                <span class="text-[10px] text-gray-500">Ver no mapa</span>
-                            </div>
+                            <span class="text-xs font-medium text-gray-300 group-hover:text-white">Localização</span>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-xs text-gray-600"></i>
-                    </div>
-                </a>
+                    </a>
+                </div>
+
             </div>
 
-            <!-- ABA: SERVIÇOS (Simplificada e Compacta) -->
+            <!-- ABA: SERVIÇOS -->
             <div id="shop-content" class="hidden flex-col gap-2.5 animate-fade-in w-full max-w-[320px] mx-auto mt-4">
                 
-                <!-- Item de Lista (Sem subtítulo e sem setinha) -->
                 <a href="https://wa.me/5546984194726?text=Interesse em Aspiração Folicular" class="block w-full active:scale-[0.98] transition-all">
                     <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center">
                         <div class="flex items-center gap-3">
@@ -253,9 +245,19 @@
 
         </div>
 
-        <!-- Rodapé Fixo e Compacto -->
-        <footer class="w-full py-3 text-center border-t border-white/5 bg-brand-dark/95 backdrop-blur shrink-0 text-[10px] text-gray-600">
-            &copy; 2026 EmbryoBov - Biotecnologia e Genética
+        <!-- Rodapé Fixo e Melhorado -->
+        <!-- pb-safe adiciona padding para áreas seguras no iPhone (barra inferior) -->
+        <footer class="w-full py-4 text-center bg-brand-dark border-t border-white/5 shrink-0 z-50">
+            <div class="flex flex-col items-center justify-center gap-1 opacity-70 hover:opacity-100 transition-opacity">
+                 <!-- Pequeno ícone ou detalhe -->
+                 <i class="fa-solid fa-dna text-brand-green text-[10px] mb-1"></i>
+                 <p class="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">
+                    EmbryoBov &copy; 2026
+                 </p>
+                 <p class="text-[9px] text-gray-600 font-light">
+                    Biotecnologia e Genética
+                 </p>
+            </div>
         </footer>
 
     </main>
