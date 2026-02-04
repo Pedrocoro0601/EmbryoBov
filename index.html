@@ -72,16 +72,18 @@
     <main class="w-full h-full max-w-md bg-brand-dark relative flex flex-col shadow-2xl md:border-x md:border-white/5">
 
         <!-- HEADER (Altura Aumentada para Centralizar Visualmente) -->
-        <!-- Alterado de h-48 para h-64 (mobile) e h-72 (telas maiores) -->
         <header class="relative w-full h-64 xs:h-72 shrink-0 flex flex-col items-center justify-end pb-6 overflow-hidden">
             
-            <!-- Slideshow Background -->
+            <!-- Slideshow Background (8 Imagens) -->
             <div class="absolute inset-0 z-0">
                 <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?q=80&w=800&auto=format&fit=crop" class="slide-image absolute inset-0 w-full h-full object-cover opacity-50" data-index="0">
                 <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=800&auto=format&fit=crop" class="slide-image absolute inset-0 w-full h-full object-cover opacity-0" data-index="1">
                 <img src="https://images.unsplash.com/photo-1545465287-6d2674e30491?q=80&w=800&auto=format&fit=crop" class="slide-image absolute inset-0 w-full h-full object-cover opacity-0" data-index="2">
                 <img src="https://images.unsplash.com/photo-1596733430282-74f88178d1e0?q=80&w=800&auto=format&fit=crop" class="slide-image absolute inset-0 w-full h-full object-cover opacity-0" data-index="3">
                 <img src="https://images.unsplash.com/photo-1484557985045-6f5c50f61b6c?q=80&w=800&auto=format&fit=crop" class="slide-image absolute inset-0 w-full h-full object-cover opacity-0" data-index="4">
+                <img src="https://images.unsplash.com/photo-1582560475093-d09bc879a96e?q=80&w=800&auto=format&fit=crop" class="slide-image absolute inset-0 w-full h-full object-cover opacity-0" data-index="5">
+                <img src="https://images.unsplash.com/photo-1574482620826-40685ca5ebd2?q=80&w=800&auto=format&fit=crop" class="slide-image absolute inset-0 w-full h-full object-cover opacity-0" data-index="6">
+                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop" class="slide-image absolute inset-0 w-full h-full object-cover opacity-0" data-index="7">
                 
                 <!-- Gradiente para legibilidade -->
                 <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/40 to-transparent"></div>
@@ -106,7 +108,6 @@
         </header>
 
         <!-- NAVEGAÇÃO (Abas) -->
-        <!-- Adicionado mt-4 para descer mais os botões -->
         <div class="w-full px-8 py-2 mt-2 shrink-0 z-20">
             <div class="bg-white/5 backdrop-blur-md p-1 rounded-full flex relative border border-white/5 mx-auto max-w-[280px]">
                 <button id="btn-links" class="flex-1 py-2 text-xs font-bold rounded-full transition-all duration-300 ease-out bg-brand-green text-brand-dark shadow-sm" onclick="switchTab('links')">
@@ -173,111 +174,79 @@
                 </a>
             </div>
 
-            <!-- ABA: SERVIÇOS (Compacta) -->
+            <!-- ABA: SERVIÇOS (Simplificada e Compacta) -->
             <div id="shop-content" class="hidden flex-col gap-2.5 animate-fade-in w-full max-w-[320px] mx-auto mt-4">
                 
-                <!-- Item de Lista (Reutilizável) -->
+                <!-- Item de Lista (Sem subtítulo e sem setinha) -->
                 <a href="https://wa.me/5546984194726?text=Interesse em Aspiração Folicular" class="block w-full active:scale-[0.98] transition-all">
-                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-between group">
+                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center">
                         <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-vial-circle-check text-brand-green text-base w-6 text-center"></i>
-                            <div class="text-left">
-                                <span class="font-semibold text-gray-200 text-xs sm:text-sm block group-hover:text-white transition-colors">Aspiração Folicular</span>
-                                <span class="text-[10px] text-gray-500">Coleta de oócitos (OPU)</span>
-                            </div>
+                            <i class="fa-solid fa-vial-circle-check text-brand-green text-base"></i>
+                            <span class="font-semibold text-gray-200 text-xs sm:text-sm group-hover:text-white transition-colors">Aspiração Folicular</span>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-[10px] text-gray-700 group-hover:text-brand-green transition-colors"></i>
                     </div>
                 </a>
 
                 <a href="https://wa.me/5546984194726?text=Interesse em TE" class="block w-full active:scale-[0.98] transition-all">
-                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-between group">
+                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center">
                         <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-dna text-brand-green text-base w-6 text-center"></i>
-                            <div class="text-left">
-                                <span class="font-semibold text-gray-200 text-xs sm:text-sm block group-hover:text-white transition-colors">Transferência de Embriões</span>
-                                <span class="text-[10px] text-gray-500">Maximize a genética</span>
-                            </div>
+                            <i class="fa-solid fa-dna text-brand-green text-base"></i>
+                            <span class="font-semibold text-gray-200 text-xs sm:text-sm group-hover:text-white transition-colors">Transferência de Embriões</span>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-[10px] text-gray-700 group-hover:text-brand-green transition-colors"></i>
                     </div>
                 </a>
 
                 <a href="https://wa.me/5546984194726?text=Interesse em IATF" class="block w-full active:scale-[0.98] transition-all">
-                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-between group">
+                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center">
                         <div class="flex items-center gap-3">
-                            <i class="fa-regular fa-clock text-brand-green text-base w-6 text-center"></i>
-                            <div class="text-left">
-                                <span class="font-semibold text-gray-200 text-xs sm:text-sm block group-hover:text-white transition-colors">IATF</span>
-                                <span class="text-[10px] text-gray-500">Inseminação Artificial</span>
-                            </div>
+                            <i class="fa-regular fa-clock text-brand-green text-base"></i>
+                            <span class="font-semibold text-gray-200 text-xs sm:text-sm group-hover:text-white transition-colors">IATF</span>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-[10px] text-gray-700 group-hover:text-brand-green transition-colors"></i>
                     </div>
                 </a>
 
                 <a href="https://wa.me/5546984194726?text=Interesse em Diagnóstico" class="block w-full active:scale-[0.98] transition-all">
-                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-between group">
+                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center">
                         <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-laptop-medical text-brand-green text-base w-6 text-center"></i>
-                            <div class="text-left">
-                                <span class="font-semibold text-gray-200 text-xs sm:text-sm block group-hover:text-white transition-colors">Diagnóstico de Gestação</span>
-                                <span class="text-[10px] text-gray-500">Ultrassonografia</span>
-                            </div>
+                            <i class="fa-solid fa-laptop-medical text-brand-green text-base"></i>
+                            <span class="font-semibold text-gray-200 text-xs sm:text-sm group-hover:text-white transition-colors">Diagnóstico de Gestação</span>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-[10px] text-gray-700 group-hover:text-brand-green transition-colors"></i>
                     </div>
                 </a>
 
                 <a href="https://wa.me/5546984194726?text=Interesse em Sexagem" class="block w-full active:scale-[0.98] transition-all">
-                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-between group">
+                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center">
                         <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-venus-mars text-brand-green text-base w-6 text-center"></i>
-                            <div class="text-left">
-                                <span class="font-semibold text-gray-200 text-xs sm:text-sm block group-hover:text-white transition-colors">Sexagem Fetal</span>
-                                <span class="text-[10px] text-gray-500">Identificação precoce</span>
-                            </div>
+                            <i class="fa-solid fa-venus-mars text-brand-green text-base"></i>
+                            <span class="font-semibold text-gray-200 text-xs sm:text-sm group-hover:text-white transition-colors">Sexagem Fetal</span>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-[10px] text-gray-700 group-hover:text-brand-green transition-colors"></i>
                     </div>
                 </a>
 
                 <a href="https://wa.me/5546984194726?text=Interesse em Exames" class="block w-full active:scale-[0.98] transition-all">
-                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-between group">
+                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center">
                         <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-microscope text-brand-green text-base w-6 text-center"></i>
-                            <div class="text-left">
-                                <span class="font-semibold text-gray-200 text-xs sm:text-sm block group-hover:text-white transition-colors">Exames Andrológicos</span>
-                                <span class="text-[10px] text-gray-500">Avaliação reprodutiva</span>
-                            </div>
+                            <i class="fa-solid fa-microscope text-brand-green text-base"></i>
+                            <span class="font-semibold text-gray-200 text-xs sm:text-sm group-hover:text-white transition-colors">Exames Andrológicos</span>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-[10px] text-gray-700 group-hover:text-brand-green transition-colors"></i>
                     </div>
                 </a>
 
                 <a href="https://wa.me/5546984194726?text=Interesse em Congelamento" class="block w-full active:scale-[0.98] transition-all">
-                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-between group">
+                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center">
                         <div class="flex items-center gap-3">
-                            <i class="fa-regular fa-snowflake text-brand-green text-base w-6 text-center"></i>
-                            <div class="text-left">
-                                <span class="font-semibold text-gray-200 text-xs sm:text-sm block group-hover:text-white transition-colors">Congelamento de Sêmen</span>
-                                <span class="text-[10px] text-gray-500">Criopreservação</span>
-                            </div>
+                            <i class="fa-regular fa-snowflake text-brand-green text-base"></i>
+                            <span class="font-semibold text-gray-200 text-xs sm:text-sm group-hover:text-white transition-colors">Congelamento de Sêmen</span>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-[10px] text-gray-700 group-hover:text-brand-green transition-colors"></i>
                     </div>
                 </a>
 
                 <a href="https://wa.me/5546984194726?text=Interesse em Acompanhamento" class="block w-full active:scale-[0.98] transition-all">
-                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-between group">
+                    <div class="bg-brand-card hover:bg-brand-gray border border-white/5 hover:border-brand-green/30 rounded-xl p-3 flex items-center justify-center group text-center">
                         <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-clipboard-check text-brand-green text-base w-6 text-center"></i>
-                            <div class="text-left">
-                                <span class="font-semibold text-gray-200 text-xs sm:text-sm block group-hover:text-white transition-colors">Acompanhamento Reprodutivo</span>
-                                <span class="text-[10px] text-gray-500">Gestão continuada</span>
-                            </div>
+                            <i class="fa-solid fa-clipboard-check text-brand-green text-base"></i>
+                            <span class="font-semibold text-gray-200 text-xs sm:text-sm group-hover:text-white transition-colors">Acompanhamento Reprodutivo</span>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-[10px] text-gray-700 group-hover:text-brand-green transition-colors"></i>
                     </div>
                 </a>
             </div>
